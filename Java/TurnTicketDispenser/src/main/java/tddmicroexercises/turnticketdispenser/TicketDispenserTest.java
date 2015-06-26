@@ -10,7 +10,7 @@ public class TicketDispenserTest {
 
     @Test
     public void turnTicketShouldHaveSubsequentNumberOfPreviousTicket() {
-        TicketDispenser td = new TicketDispenser();
+        TicketDispenser td = new TicketDispenser(new TurnNumberSequence());
         TurnTicket ticket1 = td.getTurnTicket();
         TurnTicket ticket2 = td.getTurnTicket();
         
@@ -19,8 +19,8 @@ public class TicketDispenserTest {
     
     @Test
     public void turnTicketShouldHaveSubsequentNumberOfPreviousTicketFromDifferentDispenser() {
-        TicketDispenser td = new TicketDispenser();
-        TicketDispenser td2 = new TicketDispenser();
+        TicketDispenser td = new TicketDispenser(new TurnNumberSequence());
+        TicketDispenser td2 = new TicketDispenser(new TurnNumberSequence());
         
         TurnTicket ticket1 = td.getTurnTicket();
         TurnTicket ticket2 = td2.getTurnTicket();
@@ -30,7 +30,7 @@ public class TicketDispenserTest {
     
     @Test
     public void turnTicket11ShouldComeAfterTicket10() {
-        TicketDispenser td = new TicketDispenser();
+        TicketDispenser td = new TicketDispenser(new TurnNumberSequence());
         TurnTicket ticket1 = null;
         for (int i = 0; i < 10; i ++) {
              ticket1 = td.getTurnTicket();
