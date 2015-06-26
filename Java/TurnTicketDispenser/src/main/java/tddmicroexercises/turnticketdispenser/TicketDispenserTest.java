@@ -9,11 +9,34 @@ import static org.junit.Assert.assertThat;
 public class TicketDispenserTest { 
 
     @Test
-    public void shouldIssueTicketsInAscendingOrder() {
+    public void turnTicketShouldHaveSubsequentNumberOfPreviousTicket() {
         TicketDispenser td = new TicketDispenser();
         TurnTicket ticket1 = td.getTurnTicket();
         TurnTicket ticket2 = td.getTurnTicket();
         
+        assertThat(ticket2.getTurnNumber(), is(ticket1.getTurnNumber() + 1));
+    }
+    
+    @Test
+    public void turnTicketShouldHaveSubsequentNumberOfPreviousTicketFromDifferentDispenser() {
+        TicketDispenser td = new TicketDispenser();
+        TicketDispenser td2 = new TicketDispenser();
+        
+        TurnTicket ticket1 = td.getTurnTicket();
+        TurnTicket ticket2 = td2.getTurnTicket();
+        
+        assertThat(ticket2.getTurnNumber(), is (ticket1.getTurnNumber() + 1));
+    }
+    
+    @Test
+    public void turnTicket11ShouldComeAfterTicket10() {
+        TicketDispenser td = new TicketDispenser();
+        TurnTicket ticket1 = null;
+        for (int i = 0; i < 10; i ++) {
+             ticket1 = td.getTurnTicket();
+        }
+        TurnTicket ticket2 = td.getTurnTicket();
+
         assertThat(ticket2.getTurnNumber(), is(ticket1.getTurnNumber() + 1));
     }
     
